@@ -60,6 +60,7 @@ void enviarMensagem() {
         sendto(sd,dados,SIZE,0,(struct sockaddr *) &EnderecRemoto,
         sizeof(EnderecRemoto));
   }
+  fprintf(logfile,"Fim do envio\n");
 }
 
 
