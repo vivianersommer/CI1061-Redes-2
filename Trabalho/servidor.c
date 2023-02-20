@@ -40,6 +40,13 @@ int main(int argc, char *argv[]) {
     bcopy( (char*)RegistroDNS->h_addr, (char *)&EnderecLocal.sin_addr, RegistroDNS->h_length );
 
     fprintf(logfile,"Obtido meu proprio endereco IP.\n");
+    printf("EnderecLocal.sin_port = %d\n", EnderecLocal.sin_port);
+    printf("EnderecLocal.sin_family = %d\n", EnderecLocal.sin_family);
+    
+    for (int i = 0; i <  RegistroDNS->h_length; i++){
+        printf("nderecLocal.sin_addr[%d]= %d\n", i,  RegistroDNS->h_addr[i]);
+    }
+
 
     /* Tenta abrir um socket! */
     if ((se = socket(RegistroDNS->h_addrtype,SOCK_DGRAM,0)) < 0) {
@@ -63,6 +70,7 @@ int main(int argc, char *argv[]) {
         recvfrom(se,buffer,SIZE,0, (struct sockaddr *) &EnderecCliente, &tt);
         sscanf(buffer,"%d",&x);
         fprintf(logfile,"Recebido pacote # %d.\n",x);
+        printf("Recebido pacote # %d.\n",x);
         sendto(se, buffer, SIZE, 0, (struct sockaddr *) &EnderecCliente, tt);
         fprintf(logfile,"Enviado pacote # %d.\n",x);
         fflush(logfile);

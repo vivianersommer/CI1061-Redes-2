@@ -10,7 +10,7 @@
 
 #include <pthread.h>
 
-#define PACKETS 1000
+#define PACKETS 10
 #define SIZE 1024
 
 /* Arquivo de logfile */
@@ -44,9 +44,11 @@ void enviarMensagem() {
     tempos[i] = inicio.tv_sec * 1000 + inicio.tv_usec/1000;
     if (sendto(sd,dados,SIZE,0,(struct sockaddr *) &EnderecRemoto, sizeof(EnderecRemoto)) != SIZE) {
         fprintf(stderr,"Nao foi possivel transmitir!\n");
+        printf("Nao foi possivel transmitir!\n");
         exit(5);
     }
     fprintf(logfile,"Enviado pacote # %d.\n",i);
+    printf("Enviado pacote # %d.\n",i);
   }
 
 
@@ -127,6 +129,12 @@ int main(int argc, char *argv[]) {
     EnderecRemoto.sin_family = RegistroDNS->h_addrtype;
     EnderecRemoto.sin_port = htons(atoi(argv[2]));
 
+    printf("EnderecRemoto.sin_port = %d\n", EnderecRemoto.sin_port);
+    printf("EnderecRemoto.sin_family = %d\n", EnderecRemoto.sin_family);
+    for (int i = 0; i <  RegistroDNS->h_length; i++){
+        printf("EnderecRemoto.sin_addr[%d]= %d\n", i,  RegistroDNS->h_addr[i]);
+    }
+    
     fprintf(logfile,"Obtido IP do servidor.\n");
 
     /* Tenta criar um novo socket */
