@@ -1,5 +1,10 @@
 # CI1061-Redes 2
 
+Compilar:
+````
+make
+````
+
 Rodar trabalho - cliente:
 ````
 ./cliente <nome-do-servidor> <porta> 
