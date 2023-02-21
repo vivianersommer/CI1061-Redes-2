@@ -7,18 +7,21 @@ body {
     background-color: #fff;
   }
   .title{
-
+    margin-top: 0;
+    font-size: 30px;
     font-weight: bold;
     color: #eee;
   }
   
   header {
+    text-align: center;
     background-color: #00899cac;
     padding: 20px;
+    color:#ffffff;
   }
 
   header nav a:hover {
-    background-image: linear-gradient(to right, #1abc9c, #00ced1);
+    background-image: linear-gradient(to right, #1abc9c, #00aed1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: saturate(200%);
@@ -34,6 +37,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    margin-top: 25px;
   }
   
   nav li {

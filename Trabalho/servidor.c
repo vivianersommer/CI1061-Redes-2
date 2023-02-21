@@ -11,7 +11,7 @@
 
 #define MAXNOMEHOST 30
 #define SIZE 1024
-#define SIZE_MAX 10001
+#define SIZE_MAX 500001
 
 void selection_sort(long long num[], int tam)  
 {  
@@ -83,8 +83,6 @@ int main(int argc, char *argv[]) {
 
     int sequenciaPos = 0;
     int mensagensRecebidas = 0;
-
-    // Recebendo mensagens
     while (1) {
         unsigned int tt;
         int x;
@@ -104,25 +102,31 @@ int main(int argc, char *argv[]) {
     fprintf(logServidor, "Verificando ordem e perdas de mensagens...\n");
 
     int foraDeOrdem = 0;
-    printf("mensagensRecebidas = %d\n", mensagensRecebidas);
     for (int q = 0; q < mensagensRecebidas - 1; q++){
         if (sequencia[q] > sequencia[q+1]){
             foraDeOrdem++;
-            printf("Achei um fora de ordem, os meliantes: %lld e %lld\n", sequencia[q], sequencia[q+1]);
         }
     }
 
     selection_sort(sequencia, mensagensRecebidas);
 
-    int q = 0;
     int perdidos = 0;
-    while (q < mensagensRecebidas){
-        if (q == sequencia[q]){
-            q++;
-        } else {
-            q = sequencia[q];
-            perdidos++;
+    int final = sequencia[mensagensRecebidas - 1];
+    int achou = 0;
+    for (int i = 0; i < final; i ++){
+        printf("Procurando o %d ...", i);
+        for (int j = 0; j < mensagensRecebidas; j++){
+           if (i == sequencia[j])
+           {
+                printf("Achei!! Está na posição %d", j);
+                achou = 1;
+           }
         }
+        if (!achou){
+            perdidos++;
+            printf("Não Achei!! :( \n Perdidos = %d", perdidos);
+        }
+        achou = 0;
     }
 
     fprintf(logServidor, "Foram recebidas %d mensagens, perdeu %d e %d fora de ordem.\n", mensagensRecebidas, perdidos, foraDeOrdem);
@@ -132,4 +136,3 @@ int main(int argc, char *argv[]) {
     fclose(logServidor);
     close(skt);
     return 0;
-}
