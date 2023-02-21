@@ -12,7 +12,7 @@ Rodar trabalho - cliente:
 
 Exemplo - cliente:
 ````
-./cliente 127.0.0.1 8887
+./cliente <hostname> 8887
 ````
 
 Rodar trabalho - servidor:
@@ -20,9 +20,9 @@ Rodar trabalho - servidor:
 ./servidor <porta> 
 ````
 
-Exemplo - cliente:
+Exemplo - servidor:
 ````
-./cliente 8887
+./servidor 8887
 ````
 
 **OBS: sempre rodar primeiro o servidor!**
