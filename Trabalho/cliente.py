@@ -1,7 +1,7 @@
 import socket
 import sys
 
-PACKETS = 10000
+PACKETS = 50000
 SIZE = 1024
 
 if len(sys.argv) != 3:

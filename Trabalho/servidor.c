@@ -109,22 +109,18 @@ int main(int argc, char *argv[]) {
     }
 
     selection_sort(sequencia, mensagensRecebidas);
-
     int perdidos = 0;
     int final = sequencia[mensagensRecebidas - 1];
     int achou = 0;
     for (int i = 0; i < final; i ++){
-        printf("Procurando o %d ...", i);
         for (int j = 0; j < mensagensRecebidas; j++){
            if (i == sequencia[j])
            {
-                printf("Achei!! Está na posição %d", j);
                 achou = 1;
            }
-        }
+        } 
         if (!achou){
             perdidos++;
-            printf("Não Achei!! :( \n Perdidos = %d", perdidos);
         }
         achou = 0;
     }
