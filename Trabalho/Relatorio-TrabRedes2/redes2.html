@@ -29,8 +29,7 @@
     </section>
     <section id="metodologia">
       <h2>Metodologia</h2>
-      <p>Também percebemos que ao rodar o código em sequência sem encerrar as portas obtiamos resultados estranho, então concluimos que o sistema operacional pode não liberar a porta imediatamente após o fechamento do socket, portanto, é possível que a porta ainda esteja em uso quando executamos o programa novamente. 
-        Isso pode levar a perda de pacotes ou mensagens que não são contabilizadas na contagem total de mensagens recebidas.
+      <p>Também percebemos que ao rodar o código em sequência sem encerrar as portas obtiamos resultados estranhos, então concluimos que o sistema operacional pode não liberar a porta imediatamente após o fechamento do socket, portanto, é possível que a porta ainda esteja em uso quando executamos o programa novamente. 
         Para evitar esse problema, certificamos de que o programa libera-se adequadamente a porta quando ele for encerrado e aguardamos um período de tempo suficiente antes de executar o programa novamente para garantir que a porta tenha sido liberada pelo sistema operacional.</p>
         
     </section>
@@ -79,6 +78,12 @@
               <td>38</td>
               <td>0</td>
             </tr>
+            <tr>
+              <td style="font-weight: bold;">Média</td>
+              <td>45837.4</td>
+              <td> 162.6 </td>
+              <td> 0 </td>
+            </tr>
           </tbody>
           
         </table>
@@ -123,40 +128,46 @@
               <td>3192</td>
               <td>0</td>
             </tr>
+            <tr>
+              <td style="font-weight: bold;">Média</td>
+              <td>95416.6</td>
+              <td> 4583.4 </td>
+              <td> 8.2 </td>
+            </tr>
           </tbody>
         </table>
       </div>
       <div class="botoes-first-tables">
-        <div style="margin-left: 19.5%;">
+        <div style="margin-left: 18.3%;">
           <a href="logServidor1.txt" download>
             <button>Log Servidor</button>
           </a>
         </div>
-        <div style="margin-top: 10px;margin-left: 46.4%;">
+        <div style="margin-top: 0px;margin-left: 43%;">
           <a href="logServidor2.txt" download>
             <button>Log Servidor</button>
           </a>
         </div>
       </div>
       <div class="botoes-first-tables">
-        <div style="margin-left: 19.8%;">
+        <div style="margin-top:10px ; margin-left: 18.7%;">
           <a href="logCliente1.txt" download>
             <button>Log Cliente</button>
           </a>
         </div>
-        <div style="margin-top: 10px; margin-left: 47%;">
+        <div style="margin-top: 10px; margin-left: 43.9%;">
           <a href="logCliente2.txt" download>
             <button>Log Cliente</button>
           </a>
         </div>
       </div>
-      <h4 style="text-align: center; margin-top: 5%;">Tabelas de Testes Para 200 Mil Mensagens</h3>
+      <h4 style="text-align: center; margin-top: 5%;">Tabelas de Testes Para 250 Mil Mensagens</h3>
       <div style="display: flex;">
         <table>
           <thead>
             <caption>DINF</caption>
             <tr>
-              <th></th>
+              <th></th> 
               <th>Mnsgs Recebidas</th>
               <th>Mnsgs Perdidas</th>
               <th>Mnsgs Fora de ordem</th>
@@ -165,13 +176,13 @@
           <tbody>
             <tr>
               <td>Teste 1</td>
-              <td>100000</td>
+              <td></td>
               <td> 0 </td>
               <td> 0 </td>
             </tr>
             <tr>
               <td>Teste 2</td>
-              <td>100000</td>
+              <td>244196</td>
               <td>0</td>
               <td>0</td>
             </tr>
@@ -192,6 +203,12 @@
               <td>99962</td>
               <td>38</td>
               <td>0</td>
+            </tr>
+            <tr>
+              <td style="font-weight: bold;">Média</td>
+              <td>100000</td>
+              <td> 0 </td>
+              <td> 0 </td>
             </tr>
           </tbody>
           
@@ -209,33 +226,39 @@
           <tbody>
             <tr>
               <td>Teste 1</td>
-              <td>100000</td>
-              <td> 0 </td>
-              <td> 0 </td>
+              <td>242454</td>
+              <td>7546</td>
+              <td>22</td>
             </tr>
             <tr>
               <td>Teste 2</td>
-              <td>100000</td>
-              <td>0</td>
+              <td>244196</td>
+              <td>5804</td>
               <td>0</td>
             </tr>
             <tr>
               <td>Teste 3</td>
-              <td>100000</td>
-              <td>0</td>
-              <td>0</td>
+              <td>239410</td>
+              <td>10590</td>
+              <td>94</td>
             </tr>
             <tr>
               <td>Teste 4</td>
-              <td>99225</td>
-              <td> 775</td>
-              <td> 0</td>
+              <td>231239</td>
+              <td>18761</td>
+              <td>141</td>
             </tr>
             <tr>
               <td>Teste 5</td>
-              <td>99962</td>
-              <td>38</td>
-              <td>0</td>
+              <td>244203</td>
+              <td>5797</td>
+              <td>28</td>
+            </tr>
+            <tr>
+              <td style="font-weight: bold;">Média</td>
+              <td>240300.4</td>
+              <td>9699.6</td>
+              <td>57</td>
             </tr>
           </tbody>
         </table>
@@ -246,7 +269,7 @@
             <button>Log Servidor</button>
           </a>
         </div>
-        <div style="margin-left: 46.4%;">
+        <div style="margin-top: 10px; margin-left: 46.4%;">
           <a href="logServidor2.txt" download>
             <button>Log Servidor</button>
           </a>
@@ -258,7 +281,7 @@
             <button>Log Cliente</button>
           </a>
         </div>
-        <div style="margin-left: 47%;">
+        <div style="margin-top: 10px; margin-left: 47%;">
           <a href="logCliente2.txt" download>
             <button>Log Cliente</button>
           </a>
