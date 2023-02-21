@@ -8,7 +8,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#define PACKETS 5000
+#define PACKETS 10000
 #define SIZE 1024
 
 int main(int argc, char *argv[]) {

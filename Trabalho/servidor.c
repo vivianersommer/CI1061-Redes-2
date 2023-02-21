@@ -11,7 +11,7 @@
 
 #define MAXNOMEHOST 30
 #define SIZE 1024
-#define SIZE_MAX 100000
+#define SIZE_MAX 10001
 
 void selection_sort(long long num[], int tam)  
 {  

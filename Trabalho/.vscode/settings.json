@@ -3,7 +3,9 @@
         "socket.h": "c",
         "limits": "c",
         "unistd.h": "c",
-        "poll.h": "c"
+        "poll.h": "c",
+        "netdb.h": "c",
+        "types.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
