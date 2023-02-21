@@ -83,6 +83,8 @@ int main(int argc, char *argv[]) {
 
     int sequenciaPos = 0;
     int mensagensRecebidas = 0;
+
+    // Recebendo mensagens
     while (1) {
         unsigned int tt;
         int x;
