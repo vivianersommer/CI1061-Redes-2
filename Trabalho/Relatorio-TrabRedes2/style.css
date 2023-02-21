@@ -110,6 +110,24 @@ font-style: italic;
 margin-top: 10px;
 }
 
+.botoes-first-tables{
+  display: flex
+}
+
+button {
+  background-color: #0077b6;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #023e8a;
+}
+
+
 footer {
 background-color: #00899cac;
 padding: 20px;

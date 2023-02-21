@@ -29,41 +29,245 @@
     </section>
     <section id="metodologia">
       <h2>Metodologia</h2>
-      <p>Aqui você descreve a metodologia utilizada em seu estudo.</p>
-      <table>
-        <caption>Tabela 1: Descrição dos participantes</caption>
-        <thead>
-          <tr>
-            <th>Idade</th>
-            <th>Gênero</th>
-            <th>Escolaridade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>20</td>
-            <td>Feminino</td>
-            <td>Graduação</td>
-          </tr>
-          <tr>
-            <td>25</td>
-            <td>Masculino</td>
-            <td>Pós-graduação</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>Também percebemos que ao rodar o código em sequência sem encerrar as portas obtiamos resultados estranho, então concluimos que o sistema operacional pode não liberar a porta imediatamente após o fechamento do socket, portanto, é possível que a porta ainda esteja em uso quando executamos o programa novamente. 
+        Isso pode levar a perda de pacotes ou mensagens que não são contabilizadas na contagem total de mensagens recebidas.
+        Para evitar esse problema, certificamos de que o programa libera-se adequadamente a porta quando ele for encerrado e aguardamos um período de tempo suficiente antes de executar o programa novamente para garantir que a porta tenha sido liberada pelo sistema operacional.</p>
+        
     </section>
     <section id="resultados">
       <h2>Resultados</h2>
-      <p>Aqui você apresenta os resultados do seu estudo.</p>
-      <figure>
-        <img src="grafico.png" alt="Gráfico 1: Distribuição dos participantes por gênero">
-        <figcaption>Gráfico 1: Distribuição dos participantes por gênero</figcaption>
-      </figure>
+      <h4 style="text-align: center;">Tabelas de Testes Para 100 Mil Mensagens</h3>
+      <div style="display: flex;">
+        <table>
+          <thead>
+            <caption>DINF</caption>
+            <tr>
+              <th></th>
+              <th>Mnsgs Recebidas</th>
+              <th>Mnsgs Perdidas</th>
+              <th>Mnsgs Fora de ordem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Teste 1</td>
+              <td>100000</td>
+              <td> 0 </td>
+              <td> 0 </td>
+            </tr>
+            <tr>
+              <td>Teste 2</td>
+              <td>100000</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Teste 3</td>
+              <td>100000</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Teste 4</td>
+              <td>99225</td>
+              <td> 775</td>
+              <td> 0</td>
+            </tr>
+            <tr>
+              <td>Teste 5</td>
+              <td>99962</td>
+              <td>38</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+          
+        </table>
+        <table style="margin-left: 10%;">
+          <caption>LOCAL</caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Mnsgs Recebidas</th>
+              <th>Mnsgs Perdidas</th>
+              <th>Mnsgs Fora de ordem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Teste 1</td>
+              <td>93529 </td>
+              <td>6471 </td>
+              <td> 0 </td>
+            </tr>
+            <tr>
+              <td>Teste 2</td>
+              <td>94156</td>
+              <td> 5844</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Teste 3</td>
+              <td>95713</td>
+              <td>4287</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td>Teste 4</td>
+              <td> 96877</td>
+              <td>3123</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Teste 5</td>
+              <td>96808</td>
+              <td>3192</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="botoes-first-tables">
+        <div style="margin-left: 19.5%;">
+          <a href="logServidor1.txt" download>
+            <button>Log Servidor</button>
+          </a>
+        </div>
+        <div style="margin-top: 10px;margin-left: 46.4%;">
+          <a href="logServidor2.txt" download>
+            <button>Log Servidor</button>
+          </a>
+        </div>
+      </div>
+      <div class="botoes-first-tables">
+        <div style="margin-left: 19.8%;">
+          <a href="logCliente1.txt" download>
+            <button>Log Cliente</button>
+          </a>
+        </div>
+        <div style="margin-top: 10px; margin-left: 47%;">
+          <a href="logCliente2.txt" download>
+            <button>Log Cliente</button>
+          </a>
+        </div>
+      </div>
+      <h4 style="text-align: center; margin-top: 5%;">Tabelas de Testes Para 200 Mil Mensagens</h3>
+      <div style="display: flex;">
+        <table>
+          <thead>
+            <caption>DINF</caption>
+            <tr>
+              <th></th>
+              <th>Mnsgs Recebidas</th>
+              <th>Mnsgs Perdidas</th>
+              <th>Mnsgs Fora de ordem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Teste 1</td>
+              <td>100000</td>
+              <td> 0 </td>
+              <td> 0 </td>
+            </tr>
+            <tr>
+              <td>Teste 2</td>
+              <td>100000</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Teste 3</td>
+              <td>100000</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Teste 4</td>
+              <td>99225</td>
+              <td> 775</td>
+              <td> 0</td>
+            </tr>
+            <tr>
+              <td>Teste 5</td>
+              <td>99962</td>
+              <td>38</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+          
+        </table>
+        <table style="margin-left: 10%;">
+          <caption>LOCAL</caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Mnsgs Recebidas</th>
+              <th>Mnsgs Perdidas</th>
+              <th>Mnsgs Fora de ordem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Teste 1</td>
+              <td>100000</td>
+              <td> 0 </td>
+              <td> 0 </td>
+            </tr>
+            <tr>
+              <td>Teste 2</td>
+              <td>100000</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Teste 3</td>
+              <td>100000</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Teste 4</td>
+              <td>99225</td>
+              <td> 775</td>
+              <td> 0</td>
+            </tr>
+            <tr>
+              <td>Teste 5</td>
+              <td>99962</td>
+              <td>38</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="botoes-first-tables">
+        <div style="margin-left: 19.5%;">
+          <a href="logServidor1.txt" download>
+            <button>Log Servidor</button>
+          </a>
+        </div>
+        <div style="margin-left: 46.4%;">
+          <a href="logServidor2.txt" download>
+            <button>Log Servidor</button>
+          </a>
+        </div>
+      </div>
+      <div class="botoes-first-tables">
+        <div style="margin-left: 19.8%;">
+          <a href="logCliente1.txt" download>
+            <button>Log Cliente</button>
+          </a>
+        </div>
+        <div style="margin-left: 47%;">
+          <a href="logCliente2.txt" download>
+            <button>Log Cliente</button>
+          </a>
+        </div>
+      </div>
     </section>
     <section id="conclusao">
         <h2>Conclusão</h2>
-        <p>Aqui você apresenta as conclusões do seu estudo.</p>
+        <p>Embora o UDP não seja confiável, os testes mostraram um número pequeno, porém não nulo, de mensagens desordenadas (aproximadamente 0,02 % do número total de mensgens). Acreditamos que isto se deve ao fato de os testes serem realizados na rede do departamento, onde devem haver poucos roteadores, fazendo com que o caminho percorrido pelos pacotes não seja muito grande.</p>
       </section>
     </main>
     <footer>
