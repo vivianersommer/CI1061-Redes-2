@@ -1,23 +1,32 @@
 #include <stdio.h>
-#include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
+#include <unistd.h>
+#include <sys/time.h>
 
-#define TAMFILA 5
 #define MAXNOMEHOST 30
 #define SIZE 1024
 
+double timestamp(){ 
+  struct timeval tp;
+  gettimeofday(&tp, NULL);
+  return((double)(tp.tv_usec/1000.0));
+}
+
 int main(int argc, char *argv[]) {
 
-    FILE *logfile;
-    int se;
-    char buffer[SIZE];
-    struct sockaddr_in EnderecLocal, EnderecCliente;
+    int skt;
     struct hostent *dadosServidor;
-    char NomeHost[MAXNOMEHOST];
+    struct sockaddr_in enderecoServidor, enderecoCliente;
+    FILE *logServidor;
+    char dados[SIZE];
+    char nomeHost[MAXNOMEHOST];
+    struct timeval tv;
 
     if (argc != 2) {
         printf("Você esqueceu de passar alguns parâmetros necessários, por favor rode do seguinte modo: \n");
@@ -25,48 +34,50 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    gethostname(NomeHost, MAXNOMEHOST);
-    printf("NomeHost = %s\n", NomeHost);
-    dadosServidor = gethostbyname(NomeHost);
+    logServidor = fopen("logServidor.txt","w");
+
+    gethostname(nomeHost, MAXNOMEHOST);
+    dadosServidor = gethostbyname(nomeHost);
     if (dadosServidor == NULL) {
         printf("Nao foi possível obter IP do servidor!\n");
         exit(1);
     }
+    fprintf(logServidor,"Obtido meu proprio endereco IP.\n");
 
-    EnderecLocal.sin_family = AF_INET;
-    
-    bcopy( (char *)dadosServidor->h_addr, (char *)&EnderecLocal.sin_addr, dadosServidor->h_length );
-    for (int i = 0; i < dadosServidor->h_length; i++){
-        printf("h->h_addr_list[i] = %d\n",   dadosServidor->h_addr_list[i]);
-    }
-    EnderecLocal.sin_port = htons(atoi(argv[1]));
+    bcopy( (char *)dadosServidor->h_addr, (char *)&enderecoServidor.sin_addr, dadosServidor->h_length );
+    enderecoServidor.sin_port = htons(atoi(argv[1]));
+    enderecoServidor.sin_family = dadosServidor->h_addrtype;
 
-    printf("Configurações do enredeco -----------------------------\n");
-    printf("EnderecLocal.sin_port = %d\n", EnderecLocal.sin_port);
-    printf("EnderecLocal.sin_family = %d\n", EnderecLocal.sin_family);
-    printf("EnderecRemoto.sin_addr= %d\n",  EnderecLocal.sin_addr);
-    printf("-----------------------------------------------------\n");
-
-    se = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-    if (se < 0) {
+    skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (skt < 0) {
         printf("Nao foi possível abrir o socket!\n");
         exit(1);
     }
+    fprintf(logServidor,"Aberto o socket.\n");
 
-    if (bind(se, (struct sockaddr *)&EnderecLocal, sizeof(EnderecLocal)) < 0) {
+    if (bind(skt, (struct sockaddr *)&enderecoServidor, sizeof(enderecoServidor)) < 0) {
         printf("Nao foi possível executar o bind. Porta em uso!\n");
-        return 4;
+        exit(1);
     }
+    fprintf(logServidor,"Aberto a porta para comunicação.\n");
+
+    tv.tv_sec = 5;
+    tv.tv_usec = 0;
+    setsockopt(skt,SOL_SOCKET,SO_RCVTIMEO,(char*)&tv,sizeof(struct timeval));
 
     while (1) {
         unsigned int tt;
         int x;
-        recvfrom(se,buffer,SIZE,0, (struct sockaddr *) &EnderecCliente, &tt);
-        sscanf(buffer,"%d",&x);
-        printf("Recebido pacote # %d.\n",x);
-        // sendto(se, buffer, SIZE, 0, (struct sockaddr *) &EnderecCliente, tt);
+        int recvlen = recvfrom(skt,dados,SIZE,0, (struct sockaddr *) &enderecoCliente, &tt);
+        if (recvlen < 0){
+            fprintf(logServidor,"Servidor finalizando após 5 segundos sem novas mensagens.\n");
+            break;
+        }
+        sscanf(dados,"%d",&x);
+        fprintf(logServidor,"Recebido pacote # %d.\n",x);
     }
 
-    close(se);
+    fclose(logServidor);
+    close(skt);
     return 0;
 }

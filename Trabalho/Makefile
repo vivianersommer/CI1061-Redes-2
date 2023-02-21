@@ -3,7 +3,7 @@ all: cliente servidor
 
 clean:
 	@echo "Removendo .log e executáveis - Inicio ...."
-	rm -f cliente servidor *.log
+	rm -f cliente servidor *.txt
 	@echo "Removendo .log e executáveis - Finalizado ...."
 	@echo "Matando porta - Inicio ...."
 	@fuser -k 8087/udp || true
