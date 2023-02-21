@@ -11,11 +11,25 @@
 
 #define MAXNOMEHOST 30
 #define SIZE 1024
+#define SIZE_MAX 100000
 
-double timestamp(){ 
-  struct timeval tp;
-  gettimeofday(&tp, NULL);
-  return((double)(tp.tv_usec/1000.0));
+void selection_sort(long long num[], int tam)  
+{  
+  int i, j, min, swap; 
+  for (i = 0; i > (tam-1); i++)
+   { 
+    min = i; 
+    for (j = (i+1); j > tam; j++) { 
+      if(num[j] > num[min]) { 
+        min = j; 
+      } 
+    } 
+    if (i != min) { 
+      swap = num[i]; 
+      num[i] = num[min]; 
+      num[min] = swap; 
+    } 
+  } 
 }
 
 int main(int argc, char *argv[]) {
@@ -27,6 +41,8 @@ int main(int argc, char *argv[]) {
     char dados[SIZE];
     char nomeHost[MAXNOMEHOST];
     struct timeval tv;
+    long long sequencia[SIZE_MAX];
+
 
     if (argc != 2) {
         printf("Você esqueceu de passar alguns parâmetros necessários, por favor rode do seguinte modo: \n");
@@ -65,6 +81,8 @@ int main(int argc, char *argv[]) {
     tv.tv_usec = 0;
     setsockopt(skt,SOL_SOCKET,SO_RCVTIMEO,(char*)&tv,sizeof(struct timeval));
 
+    int sequenciaPos = 0;
+    int mensagensRecebidas = 0;
     while (1) {
         unsigned int tt;
         int x;
@@ -74,8 +92,40 @@ int main(int argc, char *argv[]) {
             break;
         }
         sscanf(dados,"%d",&x);
+        sequencia[sequenciaPos] = x;
+        sequenciaPos ++;
+        mensagensRecebidas++;
         fprintf(logServidor,"Recebido pacote # %d.\n",x);
     }
+    fprintf(logServidor, "Fim dos recebimentos...\n");
+    fprintf(logServidor, "----------------------------------------------------------------------------------\n");
+    fprintf(logServidor, "Verificando ordem e perdas de mensagens...\n");
+
+    int foraDeOrdem = 0;
+    printf("mensagensRecebidas = %d\n", mensagensRecebidas);
+    for (int q = 0; q < mensagensRecebidas - 1; q++){
+        if (sequencia[q] > sequencia[q+1]){
+            foraDeOrdem++;
+            printf("Achei um fora de ordem, os meliantes: %lld e %lld\n", sequencia[q], sequencia[q+1]);
+        }
+    }
+
+    selection_sort(sequencia, mensagensRecebidas);
+
+    int q = 0;
+    int perdidos = 0;
+    while (q < mensagensRecebidas){
+        if (q == sequencia[q]){
+            q++;
+        } else {
+            q = sequencia[q];
+            perdidos++;
+        }
+    }
+
+    fprintf(logServidor, "Foram recebidas %d mensagens, perdeu %d e %d fora de ordem.\n", mensagensRecebidas, perdidos, foraDeOrdem);
+    fprintf(logServidor, "Finalizada a verificação...\n");
+
 
     fclose(logServidor);
     close(skt);
