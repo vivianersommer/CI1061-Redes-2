@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>O Canhão UDP</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="redes2-style.css">
 </head>
 <body>
   <header>
@@ -29,8 +29,11 @@
     </section>
     <section id="metodologia">
       <h2>Metodologia</h2>
-      <p>Também percebemos que ao rodar o código em sequência sem encerrar as portas obtiamos resultados estranhos, então concluimos que o sistema operacional pode não liberar a porta imediatamente após o fechamento do socket, portanto, é possível que a porta ainda esteja em uso quando executamos o programa novamente. 
-        Para evitar esse problema, certificamos de que o programa libera-se adequadamente a porta quando ele for encerrado e aguardamos um período de tempo suficiente antes de executar o programa novamente para garantir que a porta tenha sido liberada pelo sistema operacional.</p>
+      <p>Com o objetivo de avaliar a capacidade do servidor em lidar com altos volumes de tráfego de rede e verificar a correta entrega de mensagens, realizamos uma série de cinco testes para cada entrada, utilizando o protocolo UDP. Além disso, executamos testes localmente e nos servidores do departamento de informática. Com base nos resultados obtidos, elaboramos uma tabela para documentar nossos achados.
+
+        Durante a execução dos testes, foram registrados os logs do cliente e do servidor para cada tamanho de entrada. Decidimos não enviar uma mensagem indicando o fim do envio das mensagens para evitar o risco de a mensagem se perder e o servidor ficar indefinidamente esperando o término do recebimento. Em vez disso, utilizamos um timeout no servidor que encerra o recebimento e executa a análise dos dados após 5 segundos sem receber qualquer mensagem do cliente.
+        
+        Adicionalmente, notamos que ao executar o código em sequência, sem encerrar as portas adequadamente, obtivemos resultados inesperados. Isso ocorre porque o sistema operacional pode não liberar a porta imediatamente após o fechamento do socket, o que pode deixá-la ainda em uso quando o programa é executado novamente. Para evitar essa questão, certificamos que o programa libera adequadamente a porta quando encerrado e aguardamos um período de tempo suficiente antes de executá-lo novamente para garantir que a porta tenha sido liberada pelo sistema operacional</p>
         
     </section>
     <section id="resultados">
@@ -176,32 +179,32 @@
           <tbody>
             <tr>
               <td>Teste 1</td>
-              <td></td>
-              <td> 0 </td>
+              <td>249427</td>
+              <td> 573 </td>
               <td> 0 </td>
             </tr>
             <tr>
               <td>Teste 2</td>
-              <td>244196</td>
+              <td>250000</td>
               <td>0</td>
               <td>0</td>
             </tr>
             <tr>
               <td>Teste 3</td>
-              <td>100000</td>
-              <td>0</td>
+              <td>247998</td>
+              <td>2002</td>
               <td>0</td>
             </tr>
             <tr>
               <td>Teste 4</td>
-              <td>99225</td>
-              <td> 775</td>
+              <td>247435</td>
+              <td> 2565</td>
               <td> 0</td>
             </tr>
             <tr>
               <td>Teste 5</td>
-              <td>99962</td>
-              <td>38</td>
+              <td>249953</td>
+              <td>47</td>
               <td>0</td>
             </tr>
             <tr>
@@ -265,24 +268,24 @@
       </div>
       <div class="botoes-first-tables">
         <div style="margin-left: 19.5%;">
-          <a href="logServidor1.txt" download>
+          <a href="logServidor3.txt" download>
             <button>Log Servidor</button>
           </a>
         </div>
         <div style="margin-top: 10px; margin-left: 46.4%;">
-          <a href="logServidor2.txt" download>
+          <a href="logServidor4.txt" download>
             <button>Log Servidor</button>
           </a>
         </div>
       </div>
       <div class="botoes-first-tables">
         <div style="margin-left: 19.8%;">
-          <a href="logCliente1.txt" download>
+          <a href="logCliente3.txt" download>
             <button>Log Cliente</button>
           </a>
         </div>
         <div style="margin-top: 10px; margin-left: 47%;">
-          <a href="logCliente2.txt" download>
+          <a href="logCliente4.txt" download>
             <button>Log Cliente</button>
           </a>
         </div>
