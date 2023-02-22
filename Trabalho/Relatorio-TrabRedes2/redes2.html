@@ -34,7 +34,20 @@
         Durante a execução dos testes, foram registrados os logs do cliente e do servidor para cada tamanho de entrada. Decidimos não enviar uma mensagem indicando o fim do envio das mensagens para evitar o risco de a mensagem se perder e o servidor ficar indefinidamente esperando o término do recebimento. Em vez disso, utilizamos um timeout no servidor que encerra o recebimento e executa a análise dos dados após 5 segundos sem receber qualquer mensagem do cliente.
         
         Adicionalmente, notamos que ao executar o código em sequência, sem encerrar as portas adequadamente, obtivemos resultados inesperados. Isso ocorre porque o sistema operacional pode não liberar a porta imediatamente após o fechamento do socket, o que pode deixá-la ainda em uso quando o programa é executado novamente. Para evitar essa questão, certificamos que o programa libera adequadamente a porta quando encerrado e aguardamos um período de tempo suficiente antes de executá-lo novamente para garantir que a porta tenha sido liberada pelo sistema operacional</p>
-        
+        <div class="botoes-codes">
+            <a style="text-decoration: none;" href="servidor.c.txt" download>
+              <button>Código Servidor em C</button>
+            </a>
+            <a style="text-decoration: none;" href="cliente.c.txt" download>
+              <button>Código Cliente em C</button>
+            </a>
+            <a style="text-decoration: none;" href="servidor.py.txt" download>
+              <button>Código Servidor em Python</button>
+            </a>
+            <a style="text-decoration: none;" href="cliente.py.txt" download>
+              <button>Código Cliente em Python</button>
+            </a>
+        </div>
     </section>
     <section id="resultados">
       <h2>Resultados</h2>
@@ -158,7 +171,7 @@
             <button>Log Cliente</button>
           </a>
         </div>
-        <div style="margin-top: 10px; margin-left: 43.9%;">
+        <div style="margin-top: 10px; margin-left: 43.8%;">
           <a href="logCliente2.txt" download>
             <button>Log Cliente</button>
           </a>
@@ -267,24 +280,24 @@
         </table>
       </div>
       <div class="botoes-first-tables">
-        <div style="margin-left: 19.5%;">
+        <div style="margin-left: 18.3%;">
           <a href="logServidor3.txt" download>
             <button>Log Servidor</button>
           </a>
         </div>
-        <div style="margin-top: 10px; margin-left: 46.4%;">
+        <div style="margin-top: 0px; margin-left: 43%;">
           <a href="logServidor4.txt" download>
             <button>Log Servidor</button>
           </a>
         </div>
       </div>
       <div class="botoes-first-tables">
-        <div style="margin-left: 19.8%;">
+        <div style="margin-top:10px ; margin-left: 18.7%;">
           <a href="logCliente3.txt" download>
             <button>Log Cliente</button>
           </a>
         </div>
-        <div style="margin-top: 10px; margin-left: 47%;">
+        <div style="margin-top: 10px; margin-left: 43.8%;">
           <a href="logCliente4.txt" download>
             <button>Log Cliente</button>
           </a>
@@ -293,7 +306,9 @@
     </section>
     <section id="conclusao">
         <h2>Conclusão</h2>
-        <p>Embora o UDP não seja confiável, os testes mostraram um número pequeno, porém não nulo, de mensagens desordenadas (aproximadamente 0,02 % do número total de mensgens). Acreditamos que isto se deve ao fato de os testes serem realizados na rede do departamento, onde devem haver poucos roteadores, fazendo com que o caminho percorrido pelos pacotes não seja muito grande.</p>
+        <p>A análise das tabelas demonstra que a taxa de mensagens perdidas é menor nos testes realizados nos servidores do departamento de informática em comparação com os testes realizados localmente. Além disso, a taxa de mensagens fora de ordem é baixa em ambos os casos. De forma geral, os resultados dos testes parecem estar dentro dos limites aceitáveis.
+
+          Com base nos resultados obtidos, podemos concluir que, embora o protocolo UDP não seja totalmente confiável, nossos testes demonstraram um número insignificante de mensagens desordenadas. Acreditamos que esse resultado pode ser explicado pelo fato dos testes terem sido realizados na rede do departamento, onde há poucos roteadores, o que faz com que o caminho percorrido pelos pacotes não seja muito longo.</p>
       </section>
     </main>
     <footer>

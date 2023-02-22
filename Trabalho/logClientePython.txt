@@ -1,3 +1,0 @@
-Obtido IP do servidor.
-Aberto um novo socket.
-Iniciando envio de pacotes...

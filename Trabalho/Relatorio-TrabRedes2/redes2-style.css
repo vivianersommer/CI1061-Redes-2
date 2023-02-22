@@ -76,7 +76,35 @@ body {
   main section p {
     color: #444;
   }
+
+  .botoes-code {
+    display: flex;
+    justify-content: space-between;
+  }
   
+  .botoes-code a {
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  
+  .botoes-code a:last-child {
+    margin-right: 0;
+  }
+  
+  .botoes-code button {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .botoes-code button:hover {
+    background-color: #023e8a;
+  }
+  
+
   main section table {
     border-collapse: collapse;
     margin: 20px 0;

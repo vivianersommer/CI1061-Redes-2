@@ -1,3 +1,0 @@
-Obtido meu proprio endereco IP.
-Aberto o socket.
-Aberto a porta para comunicação.
